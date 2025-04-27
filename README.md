@@ -3,6 +3,7 @@
 If you use a carrosel or turret style tool changer, and want to minimize the overall time spent tool changing then this script helps solve that. 
 
 There are two versions of the script. One that uses Scipy and one that uses pure python. 
+Both of them implement the same optimization of the "Lazy Susan Problem" (so named by Justin Gray and CJ Abraham)
 
 In both cases you'll edit the bottom of the script where it says 
 
@@ -15,6 +16,8 @@ In both cases you'll edit the bottom of the script where it says
 
     sa_solve(TOOL_SEQUENCE, M)
 ```
+
+then from a terminal call the python script. 
 
 # Pure Python (start here)
 Use this one if you don't know how to install Scipy into your python installation 
