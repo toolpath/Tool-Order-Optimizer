@@ -147,13 +147,14 @@ def sa_solve(tool_sequence, M):
     sa_tool_order = [node for node, _ in circ_order]
     print("Order around ring:", sa_tool_order)
 
-    return 
+    return sa_cost, sa_tool_order
 
 # --- example usage ---
 if __name__ == "__main__":
+    #######################################
+    # Edit this to match your tool numbers
+    #######################################
     TOOL_SQUENCE = [1, 13, 1, 35, 17, 33, 31, 29, 34, 1, 37, 13, 30, 8, 1, 13, 8, 15]
     M = 28  # total positions on your plate
-
-    
 
     sa_solve(TOOL_SQUENCE, M)

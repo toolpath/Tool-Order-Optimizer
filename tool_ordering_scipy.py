@@ -75,13 +75,11 @@ def solve_with_scipy_annealing(
     best_cost = cost_mapping(best_map, edges, M)
     return best_map, best_cost
 
-# --- example usage ---
-if __name__ == "__main__":
-    TOOL_SEQUENCE = [1,13,1,35,17,33,31,29,34,1,37,13,30,8,1,13,8,15]
-    M = 28  # your plate size
+
+def sa_solve(tool_sequence, M): 
 
     # extract nodes & weighted wrap-around edges
-    nodes, edges = extract_circular_nodes_edges(TOOL_SEQUENCE)
+    nodes, edges = extract_circular_nodes_edges(tool_sequence)
 
     # solve via SciPy's dual_annealing
     mapping, cost = solve_with_scipy_annealing(nodes, edges, M, maxiter=5000)
@@ -93,3 +91,15 @@ if __name__ == "__main__":
     # derive the circular visitation order
     circ_order = [node for node, _ in sorted(mapping.items(), key=lambda kv: kv[1])]
     print("Order around ring:", circ_order)
+
+# --- example usage ---
+if __name__ == "__main__":
+
+    #######################################
+    # Edit this to match your tool numbers
+    #######################################
+    TOOL_SEQUENCE = [1,13,1,35,17,33,31,29,34,1,37,13,30,8,1,13,8,15]
+    M = 28  # your plate size
+
+    sa_solve(TOOL_SEQUENCE, M)
+    
