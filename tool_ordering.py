@@ -9,7 +9,7 @@ Edge = Tuple[Any, Any, float]
 def circ_dist(i: int, j: int, M: int) -> int:
     """Circular distance between i and j on a ring of M slots."""
     d = abs(i - j)
-    return min(d, M - d)
+    return min(d, M - d)    
 
 def cost_mapping(
     mapping: Dict[Any, int],
@@ -112,7 +112,7 @@ def simulated_annealing_circular_positions(
 
 
 def make_nodes_edges(sequence): 
-    seq = TOOL_SQUENCE
+    seq = sequence
     nodes = []
     seen = set()
     for x in seq:
@@ -121,6 +121,8 @@ def make_nodes_edges(sequence):
             nodes.append(x)
     rot = seq[1:] + seq[:1]
     pairs = list(zip(seq, rot))
+
+    print("pairs: ", pairs)
     canon = [(u,v) if u<=v else (v,u) for u,v in pairs]
     counts = Counter(canon)
     edges = [(u, v, w) for (u, v), w in counts.items()]
@@ -128,24 +130,25 @@ def make_nodes_edges(sequence):
     return nodes, edges
 
 
-def sa_solve(tool_sequence, M): 
+def sa_solve(tool_sequence, M, verbose=True): 
 
     nodes, edges = make_nodes_edges(tool_sequence)
 
     # exact (if len(nodes)<=8):
     if len(nodes) <= 8:
         bf_map, bf_cost = brute_force_circular_positions(nodes, edges, M)
-        print("EXACT mapping:", bf_map, "cost:", bf_cost)
+        if verbose: 
+            print("EXACT mapping:", bf_map, "cost:", bf_cost, "edges: ", edges)
 
     sa_map, sa_cost = simulated_annealing_circular_positions(nodes, edges, M)
     # derive a circular order by sorting nodes by their assigned position:
     circ_order = sorted(sa_map.items(), key=lambda kv: kv[1])
     # print("Approx mapping:", sa_map)
-
-
-    print("Approx cost   :", sa_cost)
     sa_tool_order = [node for node, _ in circ_order]
-    print("Order around ring:", sa_tool_order)
+
+    if verbose: 
+        print("Approx cost   :", sa_cost)
+        print("Order around ring:", sa_tool_order)
 
     return sa_cost, sa_tool_order
 
@@ -154,7 +157,14 @@ if __name__ == "__main__":
     #######################################
     # Edit this to match your tool numbers
     #######################################
-    TOOL_SQUENCE = [1, 13, 1, 35, 17, 33, 31, 29, 34, 1, 37, 13, 30, 8, 1, 13, 8, 15]
+    # TOOL_SQUENCE = [1, 13, 1, 35, 17, 33, 31, 29, 34, 1, 37, 13, 30, 8, 1, 13, 8, 15]
+    TOOL_SQUENCE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 15, 16]
     M = 28  # Number of pockets you have
+    
+    print(circ_dist(1,2,28))
+    print(circ_dist(1,28,28))
+    print(circ_dist(1,17,28))
 
-    sa_solve(TOOL_SQUENCE, M)
+    # sa_solve(TOOL_SQUENCE, M)
+
+
