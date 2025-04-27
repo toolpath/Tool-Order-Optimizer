@@ -99,7 +99,7 @@ if __name__ == "__main__":
     # Edit this to match your tool numbers
     #######################################
     TOOL_SEQUENCE = [1,13,1,35,17,33,31,29,34,1,37,13,30,8,1,13,8,15]
-    M = 28  # your plate size
+    M = 28  # Number of pockets you have
 
     sa_solve(TOOL_SEQUENCE, M)
     
