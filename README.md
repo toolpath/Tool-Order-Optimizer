@@ -29,4 +29,4 @@ Use this one if you don't know how to install Scipy into your python installatio
 While I haven't done extensive testing, the Scipy simulated annealing solver should be better than the simple one ChatGPT built for me in the pure python one. 
 So if you want a better optimizer, install scipy and use this one. 
 
-`python tool_ordering.py`
+`python tool_ordering_scipy.py`
