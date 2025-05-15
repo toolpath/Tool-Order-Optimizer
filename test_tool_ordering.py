@@ -84,23 +84,28 @@ class TestToolOrdering(unittest.TestCase):
 
 
         M = 4
-        seq = [1,2,1,3,1,4,1,2]
-
         cost, order = sa_solve(seq, M, verbose=False)
 
         expected_order = [4,1,2]
 
-        # self.assertEqual(cost, 4)
+        expected_cost = sum([1,1,1,1])
 
-        # self.assertTrue(is_circular_equivalent(order, expected_order))
+        self.assertEqual(cost, 10)
 
-        print(cost, order)
+        self.assertTrue(is_circular_equivalent(order, expected_order))
 
-        mapping = {1: 0, 4: 1, 2: 2, 3: 3}
-        edges = [(1, 2, 4), (1, 3, 2), (1, 4, 2)]
 
-        test_cost = cost_mapping(mapping, edges, M)
-        print("test_cost: ", test_cost)
+        M = 10
+        seq = [1,2,1,3,1,2,4,1]
+        cost, order = sa_solve(seq, M, verbose=False)
+
+        expected_order = [4,1,2]
+
+        expected_cost = sum([1,1,1,1])
+
+        self.assertEqual(cost, 10)
+
+        self.assertTrue(is_circular_equivalent(order, expected_order))
 
 if __name__ == "__main__": 
     unittest.main()

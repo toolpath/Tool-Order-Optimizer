@@ -147,7 +147,7 @@ def sa_solve(tool_sequence, M, verbose=True):
     sa_tool_order = [node for node, _ in circ_order]
 
     if verbose: 
-        print("Approx cost   :", sa_cost)
+        print("Cost   :", sa_cost)
         print("Order around ring:", sa_tool_order)
 
     return sa_cost, sa_tool_order
@@ -161,10 +161,6 @@ if __name__ == "__main__":
     TOOL_SQUENCE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 15, 16]
     M = 28  # Number of pockets you have
     
-    print(circ_dist(1,2,28))
-    print(circ_dist(1,28,28))
-    print(circ_dist(1,17,28))
 
-    # sa_solve(TOOL_SQUENCE, M)
-
+    sa_solve(TOOL_SQUENCE, M)
 
